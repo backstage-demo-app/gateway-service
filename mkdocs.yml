@@ -1,0 +1,10 @@
+site_name: gateway-service
+site_description: Documentation for gateway-service
+
+nav:
+  - Home: index.md
+  - API Reference: api.md
+  - Architecture: architecture.md
+
+plugins:
+  - techdocs-core
