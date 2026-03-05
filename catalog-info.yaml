@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: gateway-service
-  description: gateway
+  description: API Gateway microservice — routes and aggregates requests to downstream services (payment-service)
   annotations:
     github.com/project-slug: backstage-demo-app/gateway-service
     backstage.io/techdocs-ref: dir:.
@@ -16,21 +16,24 @@ spec:
   owner: group:default/stargate
   system: system:default/demo-platform
   providesApis:
-    - gateway-service-api
+    - gateway-api
+  consumesApis:
+    - payment-api
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: gateway-service-api
-  description: REST API provided by gateway-service
+  name: gateway-api
+  description: REST API provided by gateway-service — dashboard, payment proxy, and service health endpoints
   tags:
     - rest
     - java
     - spring-boot
+    - gateway
 spec:
   type: openapi
   lifecycle: experimental
   owner: group:default/stargate
   system: system:default/demo-platform
   definition:
-    $text: http://localhost:8080/v3/api-docs.yaml
+    $text: http://localhost:8081/v3/api-docs.yaml
